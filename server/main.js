@@ -33,7 +33,7 @@ app.post('/auth/signup', (req, res) => {
         res.send({
             success: false,
             reason: 'No password provided'
-        })
+        });
     } else {
         // Valid request
         let username = req.body.username;
@@ -47,6 +47,7 @@ app.post('/auth/signup', (req, res) => {
                     reason: 'User already exists'
                 });
             } else {
+                //Good to signup
                 const user = mongo_database.collection('users');
                 const salt = crypto.randomBytes(16).toString('hex');
                 const password_hash = crypto.scryptSync(password, salt, 64).toString('hex');
@@ -57,6 +58,55 @@ app.post('/auth/signup', (req, res) => {
                 });
                 res.send({
                     success: true
+                });
+            }
+        });
+    }
+});
+
+
+app.post('/auth/login', (req, res) => {
+    if(!req.body.username) {
+        res.send({
+            success: false,
+            reason: 'No username provided'
+        });
+    } else if (!req.body.password) {
+        res.send({
+            success: false,
+            reason: 'No password provided'
+        });
+    } else {
+        // Valid request
+        let username = req.body.username;
+        let password = req.body.password;
+        
+        //check if user already exists.
+        userExists(username).then(userExist => {
+            if(userExist != null) {
+                //Proceed with login
+                const users = mongo_database.collection('users');
+                users.findOne({username: username}).then(user => {
+                    const req_hash = crypto.scryptSync(password, user.salt, 64).toString('hex');
+                    const actual_hash = user.password_hash;
+                    if(req_hash === actual_hash) {
+                        //successful login
+                        res.send({
+                            success: true,
+                            username: user.username
+                        });
+                    } else {
+                        //wrong password
+                        res.send({
+                            success: false,
+                            reason: 'Wrong credentials'
+                        });
+                    }
+                });
+            } else {
+                res.send({
+                    success: false,
+                    reason: "User does not exist"
                 })
             }
         });
