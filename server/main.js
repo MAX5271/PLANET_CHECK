@@ -107,7 +107,7 @@ app.post('/auth/login', (req, res) => {
                 res.send({
                     success: false,
                     reason: "User does not exist"
-                })
+                });
             }
         });
     }
