@@ -25,7 +25,7 @@ body{
     border-radius:40px;
     
 }
-a{
+.navlink{
   color:rgba(255, 255, 255, 0.726); 
   text-decoration: none; 
   position: relative ;
@@ -36,14 +36,15 @@ a{
 .titleImg{
     margin-left: 30px;
 }
-a:hover{
+.navlink:hover{
     font-size: larger;
     z-index: 30;
     color: white;
-
+    
+    
 }
 
-.navtitles a::before{
+.navtitles .navlink::before{
    
     content: " ";
     position: absolute;
@@ -52,11 +53,67 @@ a:hover{
     height: 3px;
     left: 0;
     background-color: white;
+    transition: all 0.5s ease-out;
+    
 }
 
-.navtitles a:hover::before{
+.navtitles .navlink:hover::before{
     width: 100%;
 }
 
+.contain{
+    /* background-image: url(https://thumbs.dreamstime.com/z/female-hands-carbon-footprint-flowing-against-blue-to-grey-background-how-big-your-concept-167704492.jpg?w=992);
+    background-color: black; */
+    height: 100%;
+    width: 100%;
+    text-align: center;
+   
+    background-color: #7c7c95;
+
+    
+}
+
+.text-1{
+     
+      font-family: cursive;
+}
+
+
+
+.contain a:hover{
+    color: blue;
+    text-decoration: underline;
+}
+
+.image{
+   height: 500px;
+   width: 100%;
+ 
+   position: absolute;
+   background-image: url(https://wallpaperaccess.com/full/9061992.jpg);
+  
+}
+
+.details{
+  text-align: center;  
+  position: relative;  
+  top: 40px;
+}
+
+.text-2{
+    font-size:xx-large;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 1500;
+}
+
+.link{
+    text-decoration: none;
+     color: brown;
+}
+button{
+    background-color: aqua;
+     padding: 6px 14px;
+     border-radius: 25px;
+}
 
 
