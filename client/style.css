@@ -107,9 +107,21 @@ body{
 }
 
 .link{
-    text-decoration: none;
-     color: brown;
+    background-color: #0450c2;
+    padding: 4px 16px 4px 16px;
+    border: 1px solid #00a2ff;
+    border-radius: 8px;
+    font-size: 140%;
+    color: white;
 }
+
+.link:hover {
+    background-color: aliceblue;
+    border-color: #0450c2;
+    cursor: pointer;
+    color: black;
+}
+
 button{
     background-color: aqua;
      padding: 6px 14px;
